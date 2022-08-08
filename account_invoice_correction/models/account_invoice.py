@@ -94,7 +94,7 @@ class AccountInvoice(models.Model):
         iml = self.invoice_line_move_line_get() + self.tax_line_move_line_get()
         _a, _b, iml = self.compute_invoice_totals(self.company_id.currency_id, iml)
         part = self.env["res.partner"]._find_accounting_partner(self.partner_id)
-        line = [(0, 0, self.line_get_convert(l, part.id)) for l in iml]
+        line = [(0, 0, self.line_get_convert(x, part.id)) for x in iml]
         line = self.group_lines(iml, line)
         line = self.finalize_invoice_move_lines(line)
         m2m_command += line

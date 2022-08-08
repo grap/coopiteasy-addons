@@ -25,7 +25,7 @@ class AuthSignupHome(Home):
         res_lan_obj = request.env["res.lang"]
 
         supported_langs = [
-            l["code"] for l in res_lan_obj.sudo().search_read([], ["code"])
+            x["code"] for x in res_lan_obj.sudo().search_read([], ["code"])
         ]
         if request.lang in supported_langs:
             values["lang"] = request.lang
